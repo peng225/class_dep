@@ -1,5 +1,6 @@
 #include "../include/MemberAccessFinder.h"
-#include "../include/FuncInfoExtractor.h"
+#include "../include/MethodInfoExtractor.h"
+#include "../include/FieldInfoExtractor.h"
 #include "clang/AST/ASTContext.h"
 #include <iostream>
 #include <string>
@@ -14,7 +15,7 @@ MemberAccessFinder::MemberAccessFinder(std::shared_ptr<Target> tgt) : tgt(tgt)
 
 void MemberAccessFinder::run(const MatchFinder::MatchResult &result) {
     ASTContext *context = result.Context;
-    FuncInfoExtractor fie;
+    MethodInfoExtractor fie;
     std::string dep;
     if(auto *node = result.Nodes.getNodeAs<clang::CXXMethodDecl>("fdecl")) {
         dep += "\"" + fie.extractFuncName(*node) + "\"";
@@ -37,6 +38,11 @@ void MemberAccessFinder::run(const MatchFinder::MatchResult &result) {
             dep += "\"" + funcName + "\"";
         } else {
             //std::cout << "Other than member function." << std::endl;
+            FieldInfoExtractor mie;
+            auto className = mie.getClassName(*dynamic_cast<clang::FieldDecl*>(decl));
+            if(className != tgt->getName()) {
+                return;
+            }
             dep += "\"" + decl->getType().getAsString();
             dep += " ";
             dep += decl->getDeclName().getAsString() + "\"";

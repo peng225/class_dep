@@ -2,8 +2,10 @@
 
 #SRC=sample/sample.cpp
 #CLASS=Sample
+#SRC=../cnn/src/layer.cpp
+#CLASS=PoolingLayer
 SRC=../cnn/src/layer.cpp
-CLASS=PoolingLayer
+CLASS=ConvolutionLayer
 DSTDIR=/mnt/c/Users/shiny/OneDrive/ドキュメント
 FIG_FORMAT = png
 TARGET = dep_$(CLASS).$(FIG_FORMAT)

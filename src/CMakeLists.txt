@@ -29,7 +29,8 @@ MethodFinder.cpp
 MemberAccessFinder.cpp
 MethodMatcher.cpp
 MemberAccessMatcher.cpp
-FuncInfoExtractor.cpp
+MethodInfoExtractor.cpp
+FieldInfoExtractor.cpp
 Target.cpp)
 
 # https://github.com/llvm/llvm-project/blob/llvmorg-10.0.0/clang/cmake/modules/AddClang.cmake#L181

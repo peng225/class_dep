@@ -1,7 +1,7 @@
-#include "../include/FuncInfoExtractor.h"
+#include "../include/MethodInfoExtractor.h"
 
 
-std::string FuncInfoExtractor::extractFuncName(const clang::CXXMethodDecl &node)
+std::string MethodInfoExtractor::extractFuncName(const clang::CXXMethodDecl &node)
 {
     std::string result;
 
@@ -23,7 +23,7 @@ std::string FuncInfoExtractor::extractFuncName(const clang::CXXMethodDecl &node)
     return result;
 }
 
-std::string FuncInfoExtractor::getClassName(const clang::CXXMethodDecl &node)
+std::string MethodInfoExtractor::getClassName(const clang::CXXMethodDecl &node)
 {
     return node.getParent()->getNameAsString();
 }
