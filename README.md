@@ -11,7 +11,8 @@ Class field and method dependency analysis tool.
 ## How to use
 
 + Edit the parameters in Makefile.
-+ Run make command.
++ mkdir build
++ make
 
 ## Parameters
 
