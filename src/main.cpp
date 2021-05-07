@@ -1,7 +1,9 @@
 #include "../include/MethodFinder.h"
 #include "../include/MemberAccessFinder.h"
+#include "../include/BasesFinder.h"
 #include "../include/MethodMatcher.h"
 #include "../include/MemberAccessMatcher.h"
+#include "../include/BasesMatcher.h"
 #include "../include/Target.h"
 // Declares clang::SyntaxOnlyAction.
 #include "clang/Frontend/FrontendActions.h"
@@ -12,7 +14,7 @@
 #include "llvm/Support/CommandLine.h"
 
 #include <memory>
-//#include <iostream>
+#include <iostream>
 
 using namespace clang;
 using namespace clang::tooling;
@@ -32,6 +34,7 @@ static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
 static cl::extrahelp MoreHelp("\nMore help text...\n");
 
 static cl::opt<std::string> classNameOption("class-name", cl::cat(classDepCategory)); 
+static cl::opt<bool> matchBaseOption("match-base", cl::cat(classDepCategory));
 
 
 int main(int argc, const char **argv)
@@ -48,15 +51,38 @@ int main(int argc, const char **argv)
                    optionsParser.getSourcePathList());
 
     auto tgt = std::make_shared<Target>(classNameOption.getValue());
+    auto matchBase = matchBaseOption.getValue();
+
+    if(matchBase) {
+        // List up all base classes.
+        MatchFinder finder;
+        BasesFinder basesFinder(tgt);
+
+        BasesMatcher basesMatcher(tgt->getName());
+        finder.addMatcher(basesMatcher.getMatcher(), &basesFinder);
+
+        if(int ret = tool.run(newFrontendActionFactory(&finder).get()) != 0) {
+            std::cerr << "Matcher failed." << ret << std::endl;
+            return ret;
+        }
+    }
 
     MatchFinder finder;
-    MethodFinder methodFinder;
-    MemberAccessFinder memberAccessFinder(tgt);
+    auto targetNames = tgt->getNames();
+    std::cout << "target num = " << targetNames.size() << std::endl;
+    std::vector<MethodFinder> methodFinders(targetNames.size());
+    std::vector<MemberAccessFinder> memberAccessFinders;
+    for(const auto &name : targetNames) {
+        memberAccessFinders.emplace_back(MemberAccessFinder(tgt));
+    }
+    for(int i = 0; i < static_cast<int>(targetNames.size()); i++) {
+        std::cout << "input name = " << targetNames.at(i) << std::endl;
 
-    MethodMatcher methodMatcher(tgt->getName());
-    MemberAccessMatcher memberAccessMatcher(tgt->getName());
-    finder.addMatcher(methodMatcher.getMatcher(), &methodFinder);
-    finder.addMatcher(memberAccessMatcher.getMatcher(), &memberAccessFinder);
+        MethodMatcher methodMatcher(targetNames.at(i));
+        MemberAccessMatcher memberAccessMatcher(targetNames.at(i));
+        finder.addMatcher(methodMatcher.getMatcher(), &methodFinders.at(i));
+        finder.addMatcher(memberAccessMatcher.getMatcher(), &memberAccessFinders.at(i));
+    }
 
     return tool.run(newFrontendActionFactory(&finder).get());
 }

@@ -15,6 +15,9 @@ public :
 
 private:
     std::shared_ptr<Target> tgt;
+
+    bool shouldUseNode(clang::CXXMethodDecl &decl);
+    bool shouldUseNode(clang::FieldDecl &decl);
 };
 
 #endif

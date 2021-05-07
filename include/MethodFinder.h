@@ -6,10 +6,8 @@
 using namespace clang;
 using namespace clang::ast_matchers;
 
-extern DeclarationMatcher methodMatcher;
-
 class MethodFinder : public MatchFinder::MatchCallback {
-public :
+public:
     virtual void run(const MatchFinder::MatchResult &result);
 };
 

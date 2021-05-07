@@ -27,8 +27,10 @@ class_dep
 main.cpp
 MethodFinder.cpp
 MemberAccessFinder.cpp
+BasesFinder.cpp
 MethodMatcher.cpp
 MemberAccessMatcher.cpp
+BasesMatcher.cpp
 MethodInfoExtractor.cpp
 FieldInfoExtractor.cpp
 Target.cpp)
