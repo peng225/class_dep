@@ -7,9 +7,9 @@ public:
     Sample();
     void setVal(int i);
     int getVal();
-    int addValAndGet(int addVal);
+    virtual int addValAndGet(int addVal);
     int trivial();
-private:
+protected:
     int hoge;
 };
 

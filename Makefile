@@ -2,13 +2,15 @@
 
 #SRC=sample/sample.cpp
 #CLASS=Sample
+SRC=sample/der2_sample.cpp
+CLASS=Der2Sample
 #SRC=../cnn/src/layer.cpp
 #CLASS=PoolingLayer
-SRC=../cnn/src/layer.cpp
-CLASS=ConvolutionLayer
+#SRC=../cnn/src/layer.cpp
+#CLASS=ConvolutionLayer
 DSTDIR=/mnt/c/Users/shiny/OneDrive/ドキュメント
-#CLASS_DEP_OPT=--match-base
-CLASS_DEP_OPT=
+CLASS_DEP_OPT=--match-base
+#CLASS_DEP_OPT=
 FIG_FORMAT = png
 TARGET = dep_$(CLASS).$(FIG_FORMAT)
 PY=python3
