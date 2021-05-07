@@ -32,6 +32,6 @@ stop_cmake.txt:
 	touch $@
 
 clean:
-	rm -f dep_*.* class_dep_out_*.txt stop_cmake.txt
+	rm -f dep_*.* class_dep_out_*.txt stop_cmake.txt sample/*.o
 
 .PHONY: all clean
