@@ -3,12 +3,10 @@
 #include "clang/ASTMatchers/ASTMatchers.h"
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 
-using namespace clang;
-using namespace clang::ast_matchers;
 
-class MethodFinder : public MatchFinder::MatchCallback {
+class MethodFinder : public clang::ast_matchers::MatchFinder::MatchCallback {
 public:
-    virtual void run(const MatchFinder::MatchResult &result);
+    virtual void run(const clang::ast_matchers::MatchFinder::MatchResult &result);
 };
 
 #endif

@@ -4,17 +4,15 @@
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 #include <string>
 
-using namespace clang;
-using namespace clang::ast_matchers;
 
 class MethodMatcher
 {
 public :
     MethodMatcher(std::string targetName);
-    DeclarationMatcher getMatcher();
+    clang::ast_matchers::DeclarationMatcher getMatcher();
 
 private:
-    DeclarationMatcher matcher;
+    clang::ast_matchers::DeclarationMatcher matcher;
 };
 
 #endif

@@ -5,13 +5,11 @@
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 #include <memory>
 
-using namespace clang;
-using namespace clang::ast_matchers;
 
-class MemberAccessFinder : public MatchFinder::MatchCallback {
+class MemberAccessFinder : public clang::ast_matchers::MatchFinder::MatchCallback {
 public :
     MemberAccessFinder(std::shared_ptr<Target> tgt);
-    virtual void run(const MatchFinder::MatchResult &result);
+    virtual void run(const clang::ast_matchers::MatchFinder::MatchResult &result);
 
 private:
     std::shared_ptr<Target> tgt;

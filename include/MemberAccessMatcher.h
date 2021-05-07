@@ -4,17 +4,15 @@
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 #include <string>
 
-using namespace clang;
-using namespace clang::ast_matchers;
 
 class MemberAccessMatcher
 {
 public :
     MemberAccessMatcher(std::string targetName);
-    StatementMatcher getMatcher();
+    clang::ast_matchers::StatementMatcher getMatcher();
 
 private:
-    StatementMatcher matcher;
+    clang::ast_matchers::StatementMatcher matcher;
 };
 
 #endif
