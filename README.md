@@ -1,7 +1,7 @@
 # class\_dep
 Class field and method dependency analysis tool.
 
-## Required libraries
+## Required packages
 
 - clang
 - libclang-dev
