@@ -11,7 +11,6 @@ Class field and method dependency analysis tool.
 ## How to use
 
 + Edit the parameters in Makefile.
-+ mkdir build
 + make
 
 ## Parameters
@@ -22,7 +21,7 @@ Following parameters in Makefile should be set.
 | ----             | ---- |
 |  SRC             |  Name of a source file to be analized  |
 |  CLASS           |  Name of a C++ class to be analized  |
-|  DSTDIR          |  Output path  |
+|  DST\_DIR          |  Output path  |
 |  CLASS\_DEP\_OPT |  Specify if you also want to analyze base classes |
 
 ## Known issues
