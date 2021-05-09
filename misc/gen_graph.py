@@ -16,8 +16,7 @@ def writeFuncNames(outputFile, methods):
 def writeDependencies(outputFile, dependencies):
     outputFile.write("  // edge definition\n")
     for dep in dependencies:
-        spdep = dep.split(" -> ")
-        outputFile.write("  " + spdep[0] + " -> " + spdep[1] + ";\n")
+        outputFile.write("  " + dep + ";\n")
 
 def main():
     if len(sys.argv) != 3:
