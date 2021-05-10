@@ -8,6 +8,7 @@ Der2Sample::Der2Sample() : piyo(0)
 
 int Der2Sample::addValAndGet(int addVal)
 {
+    hello();
     return getVal() + addVal + piyo;
 }
 

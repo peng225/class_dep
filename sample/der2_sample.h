@@ -12,8 +12,15 @@ public:
     void hello(){}
 };
 
+class Toy2
+{
+public:
+    void hello2(){}
+};
+
+
 //class Der2Sample : public DerSample
-class Der2Sample : public DerSample, Toy
+class Der2Sample : public DerSample, public Toy, public virtual Toy2
 {
 public:
     Der2Sample();

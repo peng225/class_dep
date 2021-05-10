@@ -26,7 +26,6 @@ Following parameters in Makefile should be set.
 
 ## Known issues
 
-- Virtual inheritance is not supported.
 - Field access at member initializer is ignored.
 - Access to methods or fields of indirect ancestor class is ignored.
 
