@@ -10,7 +10,7 @@
 class BasesFinder : public clang::ast_matchers::MatchFinder::MatchCallback {
 public:
     BasesFinder(std::shared_ptr<Target> tgt);
-    virtual void run(const clang::ast_matchers::MatchFinder::MatchResult &result);
+    virtual void run(const clang::ast_matchers::MatchFinder::MatchResult &result) override;
 
 private: 
     std::shared_ptr<Target> tgt;
